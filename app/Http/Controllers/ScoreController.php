@@ -7,7 +7,7 @@ use App\Models\Student;
 use App\Models\Subject;
 use Illuminate\Http\Request;
 
-class ScoreController extends Controller
+class ScoreController extends BaseController
 {
     public function index()
     {

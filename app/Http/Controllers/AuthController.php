@@ -37,14 +37,8 @@ class AuthController extends BaseController
         $request->session()->regenerateToken();
         return redirect('/login');
     }
-    public function register(Request $request)
+    public function register(AuthRequest $request)
     {
-        $request->validate([
-            'username' => 'required|unique:users',
-            'password' => 'required|min:6',
-            'role' => 'required|in:admin,students'
-        ]);
-
         User::create([
             'username' => $request->username,
             'password' => bcrypt($request->password),

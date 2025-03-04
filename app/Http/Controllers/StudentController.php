@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\ClassModel;
 
-class StudentController extends Controller
+class StudentController extends BaseController
 {
     public function index()
     {

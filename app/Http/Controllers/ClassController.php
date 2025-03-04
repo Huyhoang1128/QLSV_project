@@ -6,7 +6,7 @@ use App\Http\Requests\ClassRequest;
 use App\Models\ClassModel;
 use Illuminate\Http\Request;
 
-class ClassController extends Controller
+class ClassController extends BaseController
 {
     public function index()
     {

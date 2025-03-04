@@ -6,7 +6,7 @@ use App\Http\Requests\SubjectRequest;
 use App\Models\Subject;
 use Illuminate\Http\Request;
 
-class SubjectController extends Controller
+class SubjectController extends BaseController
 {
     public function index()
     {

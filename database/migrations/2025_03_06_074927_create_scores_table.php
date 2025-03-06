@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedInteger('StudentID');
             $table->unsignedInteger('SubjectID');
             $table->decimal('score', 4, 2)->check('score >= 0 AND score <= 10');
+            $table->timestamps();
 
             $table->foreign('StudentID')
             ->references('id')->on('students')->onDelete('restrict');

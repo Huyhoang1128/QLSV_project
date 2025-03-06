@@ -37,14 +37,19 @@ class AuthController extends BaseController
         return redirect('/login');
     }
 
+    public function showRegisterForm()
+    {
+        return view('auth.register');
+    }
+
     public function register(RegisterRequest $request)
     {
         User::create([
-            'username' => $request->name,
-            'password' => Hash::make($request->password),
-            'role' => $request->role
+            'username' => $request->input('username'),
+            'password' => Hash::make($request->input('password')),
+            'role' => $request->input('role')
         ]);
 
-        return response()->json(['message' => 'Đăng ký thành công']);
+        return redirect()->route('login')->with('success', 'Đăng ký thành công! Vui lòng đăng nhập.');
     }
 }

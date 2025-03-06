@@ -22,17 +22,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('subjects', SubjectController::class);
     Route::resource('scores', ScoreController::class);
 });
-// Route::middleware('auth:sanctum')->group(function () {
-//     Route::get('/students', [StudentController::class, 'index']);
-//     Route::post('/students', [StudentController::class, 'store']);
-//     Route::get('/students/{id}', [StudentController::class, 'show']);
-//     Route::put('/students/{id}', [StudentController::class, 'update']);
-//     Route::delete('/students/{id}', [StudentController::class, 'destroy']);
-//     Route::get('/enrollments', [EnrollmentController::class, 'index']); // Danh sách đăng ký
-//     Route::post('/enrollments', [EnrollmentController::class, 'store']); // Đăng ký môn học
-//     Route::put('/enrollments/{id}', [EnrollmentController::class, 'update']);
-//     Route::delete('/enrollments/{id}', [EnrollmentController::class, 'destroy']); // Hủy đăng ký
-// });
+
 Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
     // Admin có quyền CRUD tất cả
     Route::apiResource('/students', StudentController::class);

@@ -16,9 +16,11 @@ return new class extends Migration
             $table->unsignedInteger('ClassID'); //khoa ngoai
             $table->string('StudentName',255);
             $table->date('birthday');
+            $table->timestamps();
 
             $table->foreign('ClassID')
             ->references('id')->on('classes')->onDelete('restrict');
+
         });
     }
 

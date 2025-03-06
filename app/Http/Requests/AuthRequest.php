@@ -17,20 +17,16 @@ class AuthRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'username' => 'required|unique:users',
+            'username' => 'required',
             'password' => 'required|min:6',
-            'role' => 'required|in:admin,students'
         ];
     }
     public function messages(): array
     {
         return [
             'username.required' => 'Tên đăng nhập là bắt buộc.',
-            'username.unique' => 'Tên đăng nhập đã tồn tại.',
             'password.required' => 'Mật khẩu là bắt buộc.',
             'password.min' => 'Mật khẩu phải có ít nhất 6 ký tự.',
-            'role.required' => 'Vai trò là bắt buộc.',
-            'role.in' => 'Vai trò phải là admin hoặc students.'
         ];
     }
 }

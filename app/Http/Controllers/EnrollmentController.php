@@ -7,7 +7,7 @@ use App\Models\Student;
 use App\Models\Subject;
 use Illuminate\Http\Request;
 
-class EnrollmentController extends Controller
+class EnrollmentController extends BaseController
 {
     public function index()
     {

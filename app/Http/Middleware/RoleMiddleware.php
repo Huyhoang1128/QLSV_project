@@ -8,9 +8,21 @@ use Symfony\Component\HttpFoundation\Response;
 
 class RoleMiddleware
 {
-    public function handle(Request $request, Closure $next, ...$roles): Response
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @param  string  $roles  Danh sách role cách nhau bởi dấu phẩy, ví dụ: "admin,student"
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function handle(Request $request, Closure $next, $roles): Response
     {
-        if (!in_array(auth()->user()->role, $roles)) {
+        // Tách danh sách roles thành mảng
+        $allowedRoles = explode(',', $roles);
+
+        // Kiểm tra nếu người dùng chưa đăng nhập hoặc role không khớp
+        if (!auth()->check() || !in_array(auth()->user()->role, $allowedRoles)) {
             return response()->json(['message' => 'Bạn không có quyền truy cập'], 403);
         }
 

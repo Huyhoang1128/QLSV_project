@@ -16,12 +16,12 @@ Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth');
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register'])->name('register.post');
-Route::middleware(['auth', 'admin'])->group(function () {
-    Route::resource('students', StudentController::class);
-    Route::resource('classes', ClassController::class);
-    Route::resource('subjects', SubjectController::class);
-    Route::resource('scores', ScoreController::class);
-});
+// Route::middleware(['auth', 'admin'])->group(function () {
+//     Route::resource('students', StudentController::class);
+//     Route::resource('classes', ClassController::class);
+//     Route::resource('subjects', SubjectController::class);
+//     Route::resource('scores', ScoreController::class);
+// });
 
 Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
     // Admin có quyền CRUD tất cả

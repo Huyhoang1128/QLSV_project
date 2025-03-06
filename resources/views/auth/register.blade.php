@@ -5,8 +5,14 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card">
-                <div class="card-header text-center">Đăng Ký Tài Khoản</div>
+                <div class="card-header text-center bg-primary text-white">
+                    <h4>Đăng Ký</h4>
+                </div>
                 <div class="card-body">
+                    @if(session('success'))
+                        <div class="alert alert-success">{{ session('success') }}</div>
+                    @endif
+
                     <form action="{{ route('register') }}" method="POST">
                         @csrf
                         <div class="mb-3">
@@ -18,14 +24,14 @@
                             <input type="password" name="password" class="form-control" required>
                         </div>
                         <div class="mb-3">
-                            <label for="password_confirmation" class="form-label">Xác nhận mật khẩu</label>
+                            <label for="password_confirmation" class="form-label">Nhập lại mật khẩu</label>
                             <input type="password" name="password_confirmation" class="form-control" required>
                         </div>
                         <div class="mb-3">
                             <label for="role" class="form-label">Chọn vai trò</label>
                             <select name="role" class="form-control" required>
-                                <option value="admin">Admin</option>
-                                <option value="student">Student</option>
+                                <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin</option>
+                                <option value="student" {{ old('role') == 'student' ? 'selected' : '' }}>Sinh viên</option>
                             </select>
                         </div>
                         @if ($errors->any())
@@ -37,8 +43,12 @@
                                 </ul>
                             </div>
                         @endif
+                        {{-- @if () --}}
                         <button type="submit" class="btn btn-primary w-100">Đăng Ký</button>
                     </form>
+                </div>
+                <div class="card-footer text-center">
+                    <a href="{{ route('login') }}">Đã có tài khoản? Đăng nhập ngay</a>
                 </div>
             </div>
         </div>

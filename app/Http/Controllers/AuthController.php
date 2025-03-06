@@ -45,11 +45,11 @@ class AuthController extends BaseController
     public function register(RegisterRequest $request)
     {
         User::create([
-            'username' => $request->name,
-            'password' => Hash::make($request->password),
-            'role' => $request->role
+            'username' => $request->input('username'),
+            'password' => Hash::make($request->input('password')),
+            'role' => $request->input('role')
         ]);
 
-        return response()->json(['message' => 'Đăng ký thành công']);
+        return redirect()->route('login')->with('success', 'Đăng ký thành công! Vui lòng đăng nhập.');
     }
 }

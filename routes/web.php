@@ -6,6 +6,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\ScoreController;
+use App\Http\Controllers\EnrollmentController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -27,4 +28,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/students/{id}', [StudentController::class, 'show']);
     Route::put('/students/{id}', [StudentController::class, 'update']);
     Route::delete('/students/{id}', [StudentController::class, 'destroy']);
+    Route::get('/enrollments', [EnrollmentController::class, 'index']); // Danh sách đăng ký
+    Route::post('/enrollments', [EnrollmentController::class, 'store']); // Đăng ký môn học
+    Route::put('/enrollments/{id}', [EnrollmentController::class, 'update']);
+    Route::delete('/enrollments/{id}', [EnrollmentController::class, 'destroy']); // Hủy đăng ký
 });

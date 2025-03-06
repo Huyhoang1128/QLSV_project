@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\AuthRequest;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends BaseController
 {
@@ -16,28 +18,15 @@ class AuthController extends BaseController
 
     public function login(AuthRequest $request)
     {
-        // $credentials = $request->validate([
-        //     'username' => 'required|string',
-        //     'password' => 'required|string',
-        // ]);
-
-        // if (Auth::attempt($credentials)) {
-        //     $request->session()->regenerate();
-        //     return redirect()->intended('/dashboard'); // Chuyển hướng sau khi đăng nhập
-        // }
-
-        // return back()->withErrors([
-        //     'username' => 'Tài khoản hoặc mật khẩu không chính xác.',
-        // ]);
         $user = User::where('username', $request->username)->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
-            return response()->json(['message' => 'Unauthorized'], 401);
+            return back()->withErrors(['login' => 'Tên đăng nhập hoặc mật khẩu không đúng']);
         }
 
-        $token = $user->createToken('auth_token')->plainTextToken;
+        Auth::login($user);
 
-        return response()->json(['token' => $token]);
+        return redirect()->route('students.index')->with('success', 'Đăng nhập thành công!');
     }
 
     public function logout(Request $request)

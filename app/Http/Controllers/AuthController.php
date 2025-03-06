@@ -37,6 +37,11 @@ class AuthController extends BaseController
         return redirect('/login');
     }
 
+    public function showRegisterForm()
+    {
+        return view('auth.register');
+    }
+
     public function register(RegisterRequest $request)
     {
         User::create([

@@ -12,10 +12,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [AuthController::class, 'login']);
+Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth');
-Route::get('/register', [AuthController::class, 'showRegisterForm']);
-Route::post('/register', [AuthController::class, 'register']);
+Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
+Route::post('/register', [AuthController::class, 'register'])->name('register.post');
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('students', StudentController::class);
     Route::resource('classes', ClassController::class);

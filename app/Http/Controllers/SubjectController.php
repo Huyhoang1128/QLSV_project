@@ -25,10 +25,10 @@ class SubjectController extends BaseController
         return redirect()->route('subjects.index')->with('success', 'Thêm môn học thành công');
     }
 
-    public function show(Subject $subject)
-    {
-        return view('subjects.show', compact('subject'));
-    }
+    // public function show(Subject $subject)
+    // {
+    //     return view('subjects.show', compact('subject'));
+    // }
 
     public function edit(Subject $subject)
     {

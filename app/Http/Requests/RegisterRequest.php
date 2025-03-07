@@ -27,7 +27,6 @@ class RegisterRequest extends FormRequest
             'password.required' => 'Mật khẩu không được để trống.',
             'password.min' => 'Mật khẩu phải có ít nhất 6 ký tự.',
             'password.confirmed' => 'Mật khẩu nhập lại không khớp.',
-            'role.required' => 'Bạn phải chọn vai trò.',
             'role.in' => 'Vai trò không hợp lệ.',
         ];
     }
